@@ -1,0 +1,31 @@
+
+
+.calendario{
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.calendario caption{
+    margin-bottom: 10px;
+}
+
+.calendario .header {
+    background: #555;
+    color: #fff;
+}
+
+.calendario tr:nth-child(odd){
+    background: #f0f0f0
+}
+
+.calendario tr:nth-child(even){
+    background: #e0e0e0;
+}
+
+.calendario th,
+.calendario td {
+    padding:15px;
+    border: 1px solid #eee;
+}
