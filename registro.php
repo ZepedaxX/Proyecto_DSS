@@ -6,9 +6,19 @@
 	$rpass=$_POST['pasword'];
 	$idRol=$_POST['idRol'];
 	$id="0";
+if(!function_exists('classAutoLoader')){
+           function classAutoLoader($classname){
+           $classname = strtolower($classname);
+           $classFile = "class/" . $classname . '.class.php';
+           if(is_file($classFile) && !class_exists($classname)) include $classFile;
+           }
+          }
+          
+spl_autoload_register('classAutoLoader');
+$db = Database::getInstance();
+$mysqli = $db->getConnection();
 
-
-	require("connect_db.php");
+	//require("connect_db.php");
 //la variable  $mysqli viene de connect_db que lo traigo con el require("connect_db.php");
 	$checkemail=mysqli_query($mysqli,"SELECT * FROM usuario  WHERE Correo='$Correo'");
 	$check_mail=mysqli_num_rows($checkemail);
@@ -29,6 +39,6 @@
 		}else{
 			echo 'Las contraseñas son incorrectas';
 		}
-
+$mysqli->close();
 	
 ?>

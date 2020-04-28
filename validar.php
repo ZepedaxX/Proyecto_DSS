@@ -6,8 +6,18 @@
 
 
 session_start();
-require("connect_db.php");
-
+//require("connect_db.php");
+if(!function_exists('classAutoLoader')){
+           function classAutoLoader($classname){
+           $classname = strtolower($classname);
+           $classFile = "class/" . $classname . '.class.php';
+           if(is_file($classFile) && !class_exists($classname)) include $classFile;
+           }
+          }
+          
+spl_autoload_register('classAutoLoader');
+$db = Database::getInstance();
+$mysqli = $db->getConnection();
 $username=$_POST['mail'];
 $pass=$_POST['pass'];
 
@@ -47,5 +57,5 @@ if($f=mysqli_fetch_assoc($sql)){
 	echo "<script>location.href='index.php'</script>";	
 
 }
-
+$mysqli->close();
 ?>
