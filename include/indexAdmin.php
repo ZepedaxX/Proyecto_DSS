@@ -1,3 +1,4 @@
+<link href ="css/calendario.css" rel="stylesheet">
 <div class="container">
 	<header class="header">
 	</header>
@@ -18,7 +19,19 @@
 				
 				<form  method="POST" action="Crearevento.php" class="form-horizontal" role="form" id="datos">
 					<?php 
-		include ("calendario.php");
+		//include ("calendario.php");
+					//Implementación de la clase classAutoLoader
+					if(!function_exists('classAutoLoader')){
+					 function classAutoLoader($classname){
+					 $classname = strtolower($classname);
+					 $classFile = "class/" . $classname . '.class.php';
+					 if(is_file($classFile) && !class_exists($classname)) include $classFile;
+					 }
+					}
+					
+					spl_autoload_register('classAutoLoader');
+					$cal = new calendario(date("m"),date("Y"));
+					$cal -> mostrar();
 		?>
 					
 					<div class="row">

@@ -22,7 +22,7 @@ class Calendario{
     public function mostrar(){
         $output = '<div class="container">';
         $output = "<table class='calendario' style='position: relative; width: 600px; left: 300px;'>";
-        $output .= '<caption>'.$this->fecha_info['month']. '  ' .$this->ano. '</caption>';
+        $output .= '<caption>'.$this->ano. '</caption>';
         $output .= '</tr>';
 
         foreach ( $this->dias_de_semana as $dia ){
@@ -64,11 +64,12 @@ class Calendario{
 }
 ?>
 
+<!-- 
 <!DOCTYPE html>
 <html>
     <head>
     <!--<link href ="css/calendario.css" rel="stylesheet">-->
-    </head>
+   <!--  </head>
 
     <body>
     <?php
@@ -76,4 +77,5 @@ class Calendario{
     $calendario->mostrar();
     ?>
     </body>
-    </hmtl>
+    </hmtl>*/
+-->

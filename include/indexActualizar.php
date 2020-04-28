@@ -12,7 +12,18 @@
     
     <?php
     extract($_GET);
-    require("connect_db.php");
+    //require("connect_db.php");
+    if(!function_exists('classAutoLoader')){
+           function classAutoLoader($classname){
+           $classname = strtolower($classname);
+           $classFile = "class/" . $classname . '.class.php';
+           if(is_file($classFile) && !class_exists($classname)) include $classFile;
+           }
+          }
+          
+          spl_autoload_register('classAutoLoader');
+  $db = Database::getInstance();
+  $mysqli = $db->getConnection();
 
     $sql="SELECT * FROM Usuario WHERE idUsuario=$idUsuario";
   //la variable  $mysqli viene de connect_db que lo traigo con el require("connect_db.php");
@@ -23,7 +34,8 @@
       $email=$row[4];
     }
 
-
+ 
+  $mysqli->close();
 
     ?>
 

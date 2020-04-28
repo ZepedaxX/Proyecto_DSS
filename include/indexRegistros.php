@@ -14,7 +14,18 @@
 			<div class="row-fluid">		
 				<?php
 
-				require("connect_db.php");
+				//require("connect_db.php");
+				if(!function_exists('classAutoLoader')){
+		           function classAutoLoader($classname){
+		           $classname = strtolower($classname);
+		           $classFile = "class/" . $classname . '.class.php';
+		           if(is_file($classFile) && !class_exists($classname)) include $classFile;
+		           }
+		          }
+          
+		          spl_autoload_register('classAutoLoader');
+			   $db = Database::getInstance();
+			   $mysqli = $db->getConnection();
 				$sql=("SELECT * FROM usuario");
 				$query=mysqli_query($mysqli,$sql);
 				echo "<table border='1'; class='table table-hover';>";
@@ -53,7 +64,7 @@
 						//header('Location: proyectos.php');
 					echo "<script>location.href='Usuarios.php'</script>";
 				}
-
+				$mysqli->close();
 				?>
 				
 				<div class="span8">
